@@ -3,10 +3,19 @@ let quoteContainer = document.querySelector('.quote-container')
 let quoteContent = document.querySelector('.quote-content')
 let quoteAuthor = document.querySelector('.quote-author > span')
 let loader = document.querySelector('.loader')
+let quotes = []
 
 
 const fetchQuotes = () => {
-    return fetch(quoteApiUrl).then(response => response.json())
+    loading()
+    fetch(quoteApiUrl).then(response => response.json())
+    .then(res=>quotes=res)
+    .catch(err=>{
+        console.log(err)
+    }).finally(()=>{
+        complete()
+        getNewQuote()
+    })
 }
 
 const complete = () => {
@@ -21,15 +30,17 @@ const loading = () => {
 
 const getNewQuote = () => {
     loading()
-    fetchQuotes().then(res=>{
-        let random = Math.floor(Math.random() * res.length);
-        quoteContent.innerHTML=res[random].text
-        quoteAuthor.innerHTML=res[random].author
-    }).catch(err=>{
-        console.log(err)
-    }).finally(()=>{
+    setTimeout(() => {
+        if(quotes.length){
+            let random = Math.floor(Math.random() * quotes.length);
+            quoteContent.innerHTML=quotes[random].text
+            quoteAuthor.innerHTML=quotes[random].author
+        }else{
+            quoteContent.innerHTML="We could not get data from server"
+            quoteAuthor.innerHTML="404"
+        }
         complete()
-    })
+    }, 1000);
 }
 
 const sendTweet = () => {
@@ -37,4 +48,4 @@ const sendTweet = () => {
   window.open(twitterUrl, '_blank');
 }
 
-getNewQuote()
+fetchQuotes()
