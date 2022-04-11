@@ -5,7 +5,7 @@ let quoteAuthor = document.querySelector('.quote-author > span')
 let loader = document.querySelector('.loader')
 let quotes = []
 
-
+//fetch quotes
 const fetchQuotes = () => {
     loading()
     fetch(quoteApiUrl).then(response => response.json())
@@ -18,6 +18,7 @@ const fetchQuotes = () => {
     })
 }
 
+//set display according to status
 const complete = () => {
     loader.hidden=true
     quoteContainer.hidden=false
@@ -28,14 +29,22 @@ const loading = () => {
     loader.hidden=false
 }
 
+//get new quote. wait for 1 second
 const getNewQuote = () => {
     loading()
     setTimeout(() => {
         if(quotes.length){
-            let random = Math.floor(Math.random() * quotes.length);
+            let random = Math.floor(Math.random() * quotes.length); //get random number from 0 to quote array length
             quoteContent.innerHTML=quotes[random].text
-            quoteAuthor.innerHTML=quotes[random].author
-        }else{
+            //check if quote has author
+            if(!quotes[random].author){
+                quoteAuthor.innerHTML="Unknown" //unknown if it has not
+            }
+            else{
+                quoteAuthor.innerHTML=quotes[random].author
+            }
+            
+        }else{ // if there is no quote inform user
             quoteContent.innerHTML="We could not get data from server"
             quoteAuthor.innerHTML="404"
         }
@@ -43,9 +52,11 @@ const getNewQuote = () => {
     }, 1000);
 }
 
+//send tweet
 const sendTweet = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteContent.innerHTML} - ${quoteAuthor.innerHTML}`;
   window.open(twitterUrl, '_blank');
 }
 
+//fetch quotes on load
 fetchQuotes()
