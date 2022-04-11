@@ -13,17 +13,16 @@
 
 <body>
 
-    <div class="quote-container flow-content">
+    <div class="quote-container flow-content" hidden>
         <div class="quote-text">
             <i class="fas fa-quote-left"></i>
-            <span class="quote-content">Let your hook always be cast; in the pool where you least expect it, there will
-                be a fish.</span>
+            <span class="quote-content"></span>
         </div>
         <div class="quote-author">
-            <span>Ovid</span>
+            <span></span>
         </div>
         <div class="button-container">
-            <button class="twitter-btn">
+            <button class="twitter-btn" onclick="sendTweet()">
                 <i class="fab fa-twitter"></i>
             </button>
             <button onclick="getNewQuote()">new quote</button>
@@ -31,7 +30,7 @@
 
     </div>
 
-    <div class="loader" hidden></div>
+    <div class="loader"></div>
 
     <script src="script.js"></script>
 </body>

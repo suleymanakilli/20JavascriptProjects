@@ -3,6 +3,8 @@ let quoteContainer = document.querySelector('.quote-container')
 let quoteContent = document.querySelector('.quote-content')
 let quoteAuthor = document.querySelector('.quote-author > span')
 let loader = document.querySelector('.loader')
+
+
 const fetchQuotes = () => {
     return fetch(quoteApiUrl).then(response => response.json())
 }
@@ -28,5 +30,11 @@ const getNewQuote = () => {
     }).finally(()=>{
         complete()
     })
-    
 }
+
+const sendTweet = () => {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteContent.innerHTML} - ${quoteAuthor.innerHTML}`;
+  window.open(twitterUrl, '_blank');
+}
+
+getNewQuote()
