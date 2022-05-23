@@ -4,7 +4,7 @@ const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming,Dark,Pun?type=single'
 let utter = new SpeechSynthesisUtterance();
 utter.lang = 'en-US';
 utter.text = 'Hello World';
-utter.volume = 0.5;
+utter.volume = 1;
 
 
 
@@ -13,7 +13,7 @@ const tellAJoke = () => {
         .then(response => response.json())
         .then(res => {
             utter.text = res.joke
-            console.log("res.joke", res.joke)
+            console.log(res.joke)
             // speak
             window.speechSynthesis.speak(utter);
         })
