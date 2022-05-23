@@ -1,0 +1,30 @@
+body {
+    background-color: #45badd;
+}
+
+.container {
+    background: url('./robot.gif');
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: left center;
+}
+
+.container button {
+    cursor: pointer;
+    outline: none;
+    padding: 15px 20px;
+    font-family: Courier, monospace;
+    font-size: 20px;
+    color: white;
+    background: #ff3482;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px 10px rgb(0 0 0 / 20%);
+}
+
+.container button:hover {
+    filter: brightness(95%);
+}
