@@ -1,4 +1,4 @@
-const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming,Dark,Pun?type=single'
+const jokeAPI = 'https://v2.jokeapi.dev/joke/Programming,Dark?type=single'
 
 // new SpeechSynthesisUtterance object
 let utter = new SpeechSynthesisUtterance();
